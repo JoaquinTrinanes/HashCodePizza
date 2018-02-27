@@ -8,17 +8,23 @@ import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
-	// write your code here
+    static Pizza pizza = null;
+
+    static {
         BufferedReader input = null;
         String file = "example.in";
-        if(args.length != 0) file = args[0];
         try {
             input = new BufferedReader(new FileReader(file));
-        } catch (FileNotFoundException e) {
+            pizza = new Pizza(input);
+        } catch (IOException e) {
             System.out.println("Error: " + e);
         }
 
-        Pizza p = new Pizza(input);
+
+    }
+
+    public static void main(String[] args){
+	// write your code here
+
     }
 }

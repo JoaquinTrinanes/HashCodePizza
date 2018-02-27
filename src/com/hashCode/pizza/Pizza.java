@@ -1,42 +1,45 @@
 package com.hashCode.pizza;
 
-import com.sun.istack.internal.NotNull;
-
 import java.awt.*;
 import java.io.*;
+import java.util.List;
 
 public class Pizza {
 
-    private final Ingrediente[][] pizza;
-    private final int rows, columns, minIngredientes, maxCeldas;
+    private final Celda[][] pizza;
+    private static int R = 0, C = 0, L = 0, H = 0;
     private int numTomate = 0, numChamp = 0;
-    private final Ingrediente menorIng;
+    private static Ingrediente MENOR_ING;
+
+    public Celda[][] getPizza() {
+        return pizza;
+    }
 
     public Pizza(BufferedReader input) throws IOException {
         String[] data = input.readLine().split("\\s");
-        this.rows = Integer.parseInt(data[0]);
-        this.columns = Integer.parseInt(data[1]);
-        this.minIngredientes = Integer.parseInt(data[2]);
-        this.maxCeldas = Integer.parseInt(data[3]);
+        this.R = Integer.parseInt(data[0]);
+        this.C = Integer.parseInt(data[1]);
+        this.L = Integer.parseInt(data[2]);
+        this.H = Integer.parseInt(data[3]);
 
-        this.pizza = new Ingrediente[rows][columns];
+        this.pizza = new Celda[R][C];
 
-        for (int i = 0; i < rows; i++) {
-            char[] ing = new char[columns];
-            input.readLine().getChars(0, columns, ing, 0);
+        for (int i = 0; i < R; i++) {
+            char[] ing = new char[C];
+            input.readLine().getChars(0, C, ing, 0);
             for (int j = 0; j < ing.length; j++) {
-                pizza[i][j] = Ingrediente.valor(ing[j]);
-                if (pizza[i][j] == Ingrediente.Tomato) numTomate++;
+                pizza[i][j] =  new Celda(new Point(i, j), Ingrediente.valor(ing[j])); //  Ingrediente.valor(ing[j]);
+                if (pizza[i][j].getIngrediente() == Ingrediente.Tomato) numTomate++;
                 else numChamp++;
             }
         }
-        if (this.numTomate < this.numChamp) this.menorIng = Ingrediente.Tomato;
-        else this.menorIng = Ingrediente.Mushroom;
+        if (this.numTomate < this.numChamp) this.MENOR_ING = Ingrediente.Tomato;
+        else this.MENOR_ING = Ingrediente.Mushroom;
 
         System.out.println("Pizza creada:");
-        for (Ingrediente[] fila : pizza) {
-            for (Ingrediente ing : fila) {
-                System.out.print(ing);
+        for (Celda[] fila : pizza) {
+            for (Celda c : fila) {
+                System.out.print(c.getIngrediente());
             }
             System.out.println();
         }
@@ -44,9 +47,10 @@ public class Pizza {
         System.out.println("Tomates: " + numTomate);
     }
 
-    public Rectangle toRectangle() {
-        return new Rectangle(0, 0, this.columns, this.rows);
+    public List<Slice> cortar() {
+        return null;
     }
+
 
 
 }
