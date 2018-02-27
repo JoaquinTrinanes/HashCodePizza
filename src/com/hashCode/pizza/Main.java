@@ -1,5 +1,6 @@
 package com.hashCode.pizza;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -11,6 +12,7 @@ public class Main {
 	// write your code here
         BufferedReader input = null;
         String file = "example.in";
+        if(args.length != 0) file = args[0];
         try {
             input = new BufferedReader(new FileReader(file));
         } catch (FileNotFoundException e) {
@@ -18,6 +20,5 @@ public class Main {
         }
 
         Pizza p = new Pizza(input);
-
     }
 }

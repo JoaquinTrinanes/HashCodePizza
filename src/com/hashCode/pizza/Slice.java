@@ -5,6 +5,10 @@ import java.awt.Rectangle;
 
 public class Slice {
     private Rectangle forma;
+    /*
+    int numTomates;
+    int numChamps;
+     */
 
     public Slice() {
         //x,y son el punto superior izquierdo
