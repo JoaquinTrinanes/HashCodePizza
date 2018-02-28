@@ -141,6 +141,10 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
     //Se encarga de borrar el atributo slice de las celdas contenidas
     public void borrarSlice(){
 
+        for (Celda cell : this.celdas) {
+            cell.setTrozo(null);
+        }
+        this.celdas.clear();
 
     }
 
