@@ -24,7 +24,17 @@ public class Main {
     }
 
     public static void main(String[] args){
-	// write your code here
+	//Itera por toda la pizza buscando una celda con el ingrediente de menor numero
+        for(int r = 0;r < pizza.R;r++){
+            for(int c = 0;c < pizza.C;c++){
+                Celda cell = pizza.getCeldas()[r][c];
+                if(cell.getIngrediente() == pizza.MENOR_ING){
+                    Slice s = new Slice(cell);
+                    //Bucle
 
+                    //Fin Bucle
+                }
+            }
+        }
     }
 }
