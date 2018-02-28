@@ -163,7 +163,7 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
 
     @Override
     public String toString(){
-        return p1.x+" "+p2.x+" "+p1.y+" "+p2.y;
+        return p1.y+" "+p2.y+" "+p1.x+" "+p2.x;
     }
 
     public boolean esValido(){
