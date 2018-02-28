@@ -54,6 +54,7 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
                 return false;
 
         }
+        return false;
     }
 
     public boolean comprobar(Point p1, Point p2) {
