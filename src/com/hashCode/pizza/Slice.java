@@ -87,7 +87,6 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
 
     public boolean comprobar(Point p1, Point p2) {
         Rectangle rect = new Rectangle(this.p1.x, this.p1.y, p2.x - p1.x, p2.y - p1.y);
-        boolean valido = true;
         for (int r = p1.x; r <= p2.x; r++) {
             for (int c = p1.y; c <= p2.y; c++) {
                 /*
@@ -117,6 +116,8 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
                 if(cell.getTrozo() == null){
                     cell.setTrozo(this);
                     this.celdas.add(cell);
+                    if (cell.getIngrediente() == Ingrediente.Tomato) this.numTomates++;
+                    else this.numChamps++;
                 }
             }
         }
@@ -125,7 +126,7 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
     //Se encarga de borrar el atributo slice de las celdas contenidas
     public void borrarSlice(){
 
-        //TODO()
+        
     }
 
 }
