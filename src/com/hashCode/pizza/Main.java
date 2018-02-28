@@ -29,13 +29,17 @@ public class Main {
         for(int r = 0;r < pizza.R;r++){
             for(int c = 0;c < pizza.C;c++){
                 Celda cell = pizza.getCeldas()[r][c];
-                if(cell.getIngrediente() == pizza.MENOR_ING){
+                if(cell.getTrozo() == null && cell.getIngrediente() == pizza.MENOR_ING){
                     Slice s = new Slice(cell);
                     ArrayList<Slice> lista = new ArrayList<>();
                     Slice.formarTrozo(s, lista);
-                    Slice mejorSlice = Slice.obtenerMejorSlice(lista);
-                    mejorSlice.anadirCeldasFinal();
-                    Main.pizza.anadirTrozo(mejorSlice);
+                    if(lista.size() > 0) {
+                        Slice mejorSlice = Slice.obtenerMejorSlice(lista);
+                        mejorSlice.anadirCeldasFinal();
+                        Main.pizza.anadirTrozo(mejorSlice);
+                    } else {
+                        cell.setTrozo(null);
+                    }
                 }
             }
         }

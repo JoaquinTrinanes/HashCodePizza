@@ -122,13 +122,10 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
         for(int r = p1.x;r <= p2.x;r++){
             for(int c = p1.y;c <= p2.y;c++){
                 Celda cell = Main.pizza.getCeldas()[r][c];
-                //Comprobamos si la celda no pertenece al trozo
-                if(!this.celdas.contains(cell)){
-                    cell.setTrozo(this);
-                    this.celdas.add(cell);
-                    if (cell.getIngrediente() == Ingrediente.Tomato) this.numTomates++;
-                    else this.numChamps++;
-                }
+                cell.setTrozo(this);
+                if (cell.getIngrediente() == Ingrediente.Tomato) this.numTomates++;
+                else this.numChamps++;
+
             }
         }
     }
