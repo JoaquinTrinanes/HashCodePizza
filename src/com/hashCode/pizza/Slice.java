@@ -25,6 +25,16 @@ public class Slice {
 
         c.setTrozo(this);
     }
+
+    public Slice(Slice s){
+        this.numTomates = s.getNumTomates();
+        this.numChamps = s.getNumChamps();
+        this.p1 = new Point (s.getP1().x, s.getP1().y);
+        this.p2 = new Point (s.getP2().x, s.getP2().y);
+        this.celdas = new ArrayList<>(s.getCeldas());
+    }
+
+
 /*
 0: izquierda
 1: arriba
@@ -33,56 +43,55 @@ public class Slice {
 
 Ademas de crecer comprobamos que el crecimiento sea "legal".
  */
-    public boolean crecer(int direccion) {
+    public Slice crecer(int direccion) {
+        Slice trozo = new Slice(this);
         Point p1tmp, p2tmp;
 
         switch (direccion) {
             case 0: //izquierda
                 p1tmp = new Point(p1.x - 1, p1.y);
-                if (p1tmp.x < 0) return false;
+                if (p1tmp.x < 0) return null;
                 if (comprobar(p1tmp, p2)){
                     //TODO())
-                    this.p1 = p1tmp;
+                    trozo.setP1(p1tmp);
                     anadirCeldas(); //Para actualizar las celdas del Slice
-                    return true;
+                    return trozo;
                 }
                 break;
             case 1: //arriba
                 p1tmp = new Point(p1.x, p1.y - 1);
-                if (p1tmp.y < 0) return false;
+                if (p1tmp.y < 0) return null;
                 if (comprobar(p1tmp, p2)){
                     //TODO())
-                    this.p1 = p1tmp;
+                    trozo.setP1(p1tmp);
                     anadirCeldas(); //Para actualizar las celdas del Slice
-                    return true;
+                    return trozo;
                 }
                 break;
 
             case 2: //derecha
                 p2tmp = new Point(p2.x + 1, p2.y);
-                if (p2tmp.x >= Main.pizza.R) return false;
+                if (p2tmp.x >= Main.pizza.R) return null;
                 if (comprobar(p1, p2tmp)){
                     //TODO())
-                    this.p2 = p2tmp;
+                    trozo.setP2(p2tmp);
                     anadirCeldas(); //Para actualizar las celdas del Slice
-                    return true;
+                    return trozo;
                 }
                 break;
             case 3: //abajo
                 p2tmp = new Point(p2.x, p2.y +1);
-                if (p2tmp.y >= Main.pizza.C) return false;
+                if (p2tmp.y >= Main.pizza.C) return null;
                 if (comprobar(p1, p2tmp)){
                     //TODO())
-                    this.p2 = p2tmp;
+                    trozo.setP2(p2tmp);
                     anadirCeldas(); //Para actualizar las celdas del Slice
-                    return true;
+                    return trozo;
                 }
                 break;
-            default:
-                return false;
 
         }
-        return false;
+        return null;
     }
 
     public boolean comprobar(Point p1, Point p2) {
@@ -117,6 +126,7 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
                 if(cell.getTrozo() == null){
                     cell.setTrozo(this);
                     this.celdas.add(cell);
+
                 }
             }
         }
@@ -128,4 +138,74 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
         //TODO()
     }
 
+    public boolean esValido(){
+        return numChamps >= Main.pizza.L && numTomates >= Main.pizza.L && this.celdas.size() <= Main.pizza.H;
+    }
+
+    //Funcion que se encarga de hacer backtracking recursivo con el trozo y almacena en Lista todos los
+    //trozos
+    public static void formarTrozo(Slice s, List<Slice> Lista){
+        if(s.getCeldas().size() > Main.pizza.H){
+            return;
+        }
+        if(s.esValido()){
+            Lista.add(s);
+            return;
+        }
+        Slice s0 = s.crecer(0);
+        Slice s1 = s.crecer(1);
+        Slice s2 = s.crecer(2);
+        Slice s3 = s.crecer(3);
+
+        if(s0 != null) formarTrozo(s0, Lista);
+        if(s1 != null) formarTrozo(s1, Lista);
+        if(s2 != null) formarTrozo(s2, Lista);
+        if(s3 != null) formarTrozo(s3, Lista);
+
+    }
+
+    public static Slice obtenerMejorSlice(List<Slice> lista){
+        if(lista.size() <= 0) return null;
+        Slice mejorSlice = lista.get(0);
+        for(Slice s : lista){
+            if(s.getCeldas().size() < mejorSlice.getCeldas().size()) mejorSlice = s;
+        }
+        return mejorSlice;
+    }
+
+    public List<Celda> getCeldas() {
+        return celdas;
+    }
+
+    public int getNumTomates() {
+        return numTomates;
+    }
+
+    public void setNumTomates(int numTomates) {
+        this.numTomates = numTomates;
+    }
+
+    public int getNumChamps() {
+        return numChamps;
+    }
+
+    public void setNumChamps(int numChamps) {
+        this.numChamps = numChamps;
+    }
+
+    public Point getP1() {
+        return p1;
+    }
+
+    public void setP1(Point p1) {
+        this.p1 = new Point(p1);
+    }
+
+    public Point getP2() {
+        return p2;
+    }
+
+    public void setP2(Point p2) {
+        this.p2 = new Point(p2);
+    }
 }

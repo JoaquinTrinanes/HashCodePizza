@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Main {
 
@@ -30,11 +31,15 @@ public class Main {
                 Celda cell = pizza.getCeldas()[r][c];
                 if(cell.getIngrediente() == pizza.MENOR_ING){
                     Slice s = new Slice(cell);
-                    //Bucle
-
-                    //Fin Bucle
+                    ArrayList<Slice> lista = new ArrayList<>();
+                    Slice.formarTrozo(s, lista);
+                    Slice mejorSlice = Slice.obtenerMejorSlice(lista);
+                    Main.pizza.anadirTrozo(mejorSlice);
                 }
             }
+        }
+        for(Slice s : Main.pizza.getTrozos()){
+            System.out.println(s);
         }
     }
 }
