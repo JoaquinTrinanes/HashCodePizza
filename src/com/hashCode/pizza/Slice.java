@@ -36,10 +36,10 @@ public class Slice {
 
 
 /*
-0: izquierda
-1: arriba
-2: derecha
-3: abajo
+0: izquierda    Restamos 1 a C (y-1)
+1: arriba   Restamos 1 a R (x-1)
+2: derecha  Sumamos 1 a C (y+1)
+3: abajo    Sumamos 1 a R (x+1)
 
 Ademas de crecer comprobamos que el crecimiento sea "legal".
  */
@@ -49,8 +49,8 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
 
         switch (direccion) {
             case 0: //izquierda
-                p1tmp = new Point(p1.x - 1, p1.y);
-                if (p1tmp.x < 0) return null;
+                p1tmp = new Point(p1.x, p1.y -1);
+                if (p1tmp.y < 0) return null;
                 if (comprobar(p1tmp, p2)){
                     //TODO())
                     trozo.setP1(p1tmp);
@@ -59,8 +59,8 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
                 }
                 break;
             case 1: //arriba
-                p1tmp = new Point(p1.x, p1.y - 1);
-                if (p1tmp.y < 0) return null;
+                p1tmp = new Point(p1.x -1, p1.y);
+                if (p1tmp.x < 0) return null;
                 if (comprobar(p1tmp, p2)){
                     //TODO())
                     trozo.setP1(p1tmp);
@@ -70,8 +70,8 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
                 break;
 
             case 2: //derecha
-                p2tmp = new Point(p2.x + 1, p2.y);
-                if (p2tmp.x >= Main.pizza.R) return null;
+                p2tmp = new Point(p2.x, p2.y +1);
+                if (p2tmp.y >= Main.pizza.C) return null;
                 if (comprobar(p1, p2tmp)){
                     //TODO())
                     trozo.setP2(p2tmp);
@@ -80,8 +80,8 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
                 }
                 break;
             case 3: //abajo
-                p2tmp = new Point(p2.x, p2.y +1);
-                if (p2tmp.y >= Main.pizza.C) return null;
+                p2tmp = new Point(p2.x +1, p2.y);
+                if (p2tmp.x >= Main.pizza.R) return null;
                 if (comprobar(p1, p2tmp)){
                     //TODO())
                     trozo.setP2(p2tmp);
@@ -95,7 +95,7 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
     }
 
     public boolean comprobar(Point p1, Point p2) {
-        Rectangle rect = new Rectangle(this.p1.x, this.p1.y, this.p2.x - this.p1.x+1, this.p2.y - this.p1.y+1);
+        Rectangle rect = new Rectangle(this.p1.x, this.p1.y, this.p2.y - this.p1.y+1, this.p2.x - this.p1.x+1);
         for (int r = p1.x; r <= p2.x; r++) {
             for (int c = p1.y; c <= p2.y; c++) {
                 /*
@@ -163,7 +163,7 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
 
     @Override
     public String toString(){
-        return p1.y+" "+p2.y+" "+p1.x+" "+p2.x;
+        return p1.x+" "+p1.y+" "+p2.x+" "+p2.y;
     }
 
     public boolean esValido(){

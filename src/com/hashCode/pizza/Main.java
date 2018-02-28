@@ -13,7 +13,7 @@ public class Main {
 
     static {
         BufferedReader input = null;
-        String file = "example.in";
+        String file = "small.in";
         try {
             input = new BufferedReader(new FileReader(file));
             pizza = new Pizza(input);

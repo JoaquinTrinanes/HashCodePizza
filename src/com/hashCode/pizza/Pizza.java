@@ -28,12 +28,12 @@ public class Pizza {
 
         this.celdas = new Celda[R][C];
 
-        for (int i = 0; i < R; i++) {
+        for (int r = 0; r < R; r++) {
             char[] ing = new char[C];
             input.readLine().getChars(0, C, ing, 0);
-            for (int j = 0; j < ing.length; j++) {
-                celdas[i][j] =  new Celda(new Point(i, j), Ingrediente.valor(ing[j])); //  Ingrediente.valor(ing[j]);
-                if (celdas[i][j].getIngrediente() == Ingrediente.Tomato) numTomate++;
+            for (int c = 0; c < ing.length; c++) {
+                celdas[r][c] =  new Celda(new Point(r, c), Ingrediente.valor(ing[c])); //  Ingrediente.valor(ing[j]);
+                if (celdas[r][c].getIngrediente() == Ingrediente.Tomato) numTomate++;
                 else numChamp++;
             }
         }
@@ -42,8 +42,8 @@ public class Pizza {
 
         System.out.println("Pizza creada:");
         for (Celda[] fila : celdas) {
-            for (Celda c : fila) {
-                System.out.print(c.getIngrediente());
+            for (Celda cell : fila) {
+                System.out.print(cell.getIngrediente());
             }
             System.out.println();
         }

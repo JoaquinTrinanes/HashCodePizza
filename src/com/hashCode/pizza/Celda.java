@@ -33,8 +33,11 @@ public class Celda {
         return "("+punto.x+","+punto.y+")";
     }
 
+
     @Override
     public boolean equals(Object c) {
-        return this.toString() == c.toString() && c instanceof Celda;
+        Celda cell = (Celda) c;
+        return this.toString().equals(cell.toString()) && cell instanceof Celda;
     }
+
 }
