@@ -96,7 +96,6 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
 
     public boolean comprobar(Point p1, Point p2) {
         Rectangle rect = new Rectangle(this.p1.x, this.p1.y, p2.x - p1.x, p2.y - p1.y);
-        boolean valido = true;
         for (int r = p1.x; r <= p2.x; r++) {
             for (int c = p1.y; c <= p2.y; c++) {
                 /*
@@ -117,25 +116,54 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
 
     //Se encarga de añadir todas las celdas contenidas entre los puntos p1 y p2 en caso de que no esten
     //También fija el atributo trozo de cada celda a este trozo (this)
+    //Este método se utiliza solo en el trozo elegido de la función recursiva
+    public void anadirCeldasFinal(){
+        //Iteramos por las celdas del trozo
+        for(int r = p1.x;r <= p2.x;r++){
+            for(int c = p1.y;c <= p2.y;c++){
+                Celda cell = Main.pizza.getCeldas()[r][c];
+                //Comprobamos si la celda no pertenece al trozo
+                if(!this.celdas.contains(cell)){
+                    cell.setTrozo(this);
+                    this.celdas.add(cell);
+                    if (cell.getIngrediente() == Ingrediente.Tomato) this.numTomates++;
+                    else this.numChamps++;
+                }
+            }
+        }
+    }
+
+    //Método a utilizar en cada llamada de la función recursiva
     public void anadirCeldas(){
         //Iteramos por las celdas del trozo
         for(int r = p1.x;r <= p2.x;r++){
             for(int c = p1.y;c <= p2.y;c++){
                 Celda cell = Main.pizza.getCeldas()[r][c];
                 //Comprobamos si la celda no pertenece al trozo
-                if(cell.getTrozo() == null){
-                    cell.setTrozo(this);
+                if(!this.celdas.contains(cell)){
                     this.celdas.add(cell);
-
+                    if (cell.getIngrediente() == Ingrediente.Tomato) this.numTomates++;
+                    else this.numChamps++;
                 }
             }
         }
     }
 
+
+
     //Se encarga de borrar el atributo slice de las celdas contenidas
     public void borrarSlice(){
 
-        //TODO()
+        for (Celda cell : this.celdas) {
+            cell.setTrozo(null);
+        }
+        this.celdas.clear();
+
+    }
+
+    @Override
+    public String toString(){
+        return p1.x+" "+p2.x+" "+p1.y+" "+p2.y;
     }
 
     public boolean esValido(){
