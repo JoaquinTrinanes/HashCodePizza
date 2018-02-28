@@ -34,6 +34,7 @@ public class Main {
                     ArrayList<Slice> lista = new ArrayList<>();
                     Slice.formarTrozo(s, lista);
                     Slice mejorSlice = Slice.obtenerMejorSlice(lista);
+                    mejorSlice.anadirCeldasFinal();
                     Main.pizza.anadirTrozo(mejorSlice);
                 }
             }

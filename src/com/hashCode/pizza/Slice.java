@@ -54,7 +54,7 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
                 if (comprobar(p1tmp, p2)){
                     //TODO())
                     trozo.setP1(p1tmp);
-                    anadirCeldas(); //Para actualizar las celdas del Slice
+                    trozo.anadirCeldas(); //Para actualizar las celdas del Slice
                     return trozo;
                 }
                 break;
@@ -64,7 +64,7 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
                 if (comprobar(p1tmp, p2)){
                     //TODO())
                     trozo.setP1(p1tmp);
-                    anadirCeldas(); //Para actualizar las celdas del Slice
+                    trozo.anadirCeldas(); //Para actualizar las celdas del Slice
                     return trozo;
                 }
                 break;
@@ -75,7 +75,7 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
                 if (comprobar(p1, p2tmp)){
                     //TODO())
                     trozo.setP2(p2tmp);
-                    anadirCeldas(); //Para actualizar las celdas del Slice
+                    trozo.anadirCeldas(); //Para actualizar las celdas del Slice
                     return trozo;
                 }
                 break;
@@ -85,7 +85,7 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
                 if (comprobar(p1, p2tmp)){
                     //TODO())
                     trozo.setP2(p2tmp);
-                    anadirCeldas(); //Para actualizar las celdas del Slice
+                    trozo.anadirCeldas(); //Para actualizar las celdas del Slice
                     return trozo;
                 }
                 break;
@@ -95,7 +95,7 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
     }
 
     public boolean comprobar(Point p1, Point p2) {
-        Rectangle rect = new Rectangle(this.p1.x, this.p1.y, p2.x - p1.x, p2.y - p1.y);
+        Rectangle rect = new Rectangle(this.p1.x, this.p1.y, this.p2.x - this.p1.x+1, this.p2.y - this.p1.y+1);
         for (int r = p1.x; r <= p2.x; r++) {
             for (int c = p1.y; c <= p2.y; c++) {
                 /*
