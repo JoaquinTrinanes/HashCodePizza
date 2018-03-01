@@ -1,6 +1,5 @@
 package com.hashCode.pizza;
 
-import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -12,7 +11,7 @@ public class Main {
 
     static {
         BufferedReader input = null;
-        Main.nombre = "medium";
+        Main.nombre = "big";
         Main.file = nombre + ".in";
         Main.out = nombre + ".out";
         try {
