@@ -33,6 +33,7 @@ public class Main {
                     Slice s = new Slice(cell);
                     ArrayList<Slice> lista = new ArrayList<>();
                     Slice.formarTrozo(s, lista);
+                    Slice.seguir = true;
                     if(lista.size() > 0) {
                         Slice mejorSlice = Slice.obtenerMejorSlice(lista);
                         mejorSlice.anadirCeldasFinal();
