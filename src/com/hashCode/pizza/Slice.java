@@ -10,7 +10,7 @@ public class Slice {
     private int numTomates = 0;
     private int numChamps = 0;
     private Point p1 = null, p2 = null;
-    public static Boolean seguir = true;
+    public static Integer seguir = Pizza.H + 1;
 
     private List<Celda> celdas = null;
 
@@ -160,29 +160,28 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
     //Funcion que se encarga de hacer backtracking recursivo con el trozo y almacena en Lista todos los
     //trozos
     public static void formarTrozo(Slice s, List<Slice> Lista){
-        if(s.getCeldas().size() > Main.pizza.H){
-            s = null;
+        if(s.getCeldas().size() >= Slice.seguir){
             return;
         }
         if(s.esValido()){
-            if(s.getCeldas().size() == Pizza.L*2){
-                Slice.seguir = false;
+            if(s.getCeldas().size() < Slice.seguir) {
+                Slice.seguir = s.getCeldas().size();
+                Lista.add(s);
             }
-            Lista.add(s);
             return;
         }
 
-        if(Slice.seguir) {
+
             Slice s0 = s.crecer(0);
             Slice s1 = s.crecer(1);
             Slice s2 = s.crecer(2);
             Slice s3 = s.crecer(3);
 
-            if (s0 != null && Slice.seguir) formarTrozo(s0, Lista);
-            if (s1 != null && Slice.seguir) formarTrozo(s1, Lista);
-            if (s2 != null && Slice.seguir) formarTrozo(s2, Lista);
-            if (s3 != null && Slice.seguir) formarTrozo(s3, Lista);
-        }
+            if (s0 != null && s0.getCeldas().size() < Slice.seguir) formarTrozo(s0, Lista);
+            if (s1 != null && s1.getCeldas().size() < Slice.seguir) formarTrozo(s1, Lista);
+            if (s2 != null && s2.getCeldas().size() < Slice.seguir) formarTrozo(s2, Lista);
+            if (s3 != null && s3.getCeldas().size() < Slice.seguir) formarTrozo(s3, Lista);
+
     }
 
     public static Slice obtenerMejorSlice(List<Slice> lista){

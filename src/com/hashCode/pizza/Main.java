@@ -34,7 +34,7 @@ public class Main {
                     Slice s = new Slice(cell);
                     ArrayList<Slice> lista = new ArrayList<>();
                     Slice.formarTrozo(s, lista);
-                    Slice.seguir = true;
+                    Slice.seguir = Pizza.H + 1;
                     if(lista.size() > 0) {
                         Slice mejorSlice = Slice.obtenerMejorSlice(lista);
                         mejorSlice.anadirCeldasFinal();
