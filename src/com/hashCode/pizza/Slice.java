@@ -23,7 +23,7 @@ public class Slice {
         this.p1 = new Point(c.getPunto());
         this.p2 = new Point(c.getPunto());
 
-        c.setTrozo(this);
+        //c.setTrozo(this);
     }
 
     public Slice(Slice s){

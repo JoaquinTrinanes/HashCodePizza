@@ -12,7 +12,7 @@ public class Main {
 
     static {
         BufferedReader input = null;
-        Main.nombre = "big";
+        Main.nombre = "medium";
         Main.file = nombre + ".in";
         Main.out = nombre + ".out";
         try {
@@ -38,8 +38,6 @@ public class Main {
                         Slice mejorSlice = Slice.obtenerMejorSlice(lista);
                         mejorSlice.anadirCeldasFinal();
                         Main.pizza.anadirTrozo(mejorSlice);
-                    } else {
-                        cell.setTrozo(null);
                     }
                 }
             }
