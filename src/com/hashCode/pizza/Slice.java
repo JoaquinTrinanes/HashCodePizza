@@ -119,14 +119,8 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
     //Este método se utiliza solo en el trozo elegido de la función recursiva
     public void anadirCeldasFinal(){
         //Iteramos por las celdas del trozo
-        for(int r = p1.x;r <= p2.x;r++){
-            for(int c = p1.y;c <= p2.y;c++){
-                Celda cell = Main.pizza.getCeldas()[r][c];
-                cell.setTrozo(this);
-                if (cell.getIngrediente() == Ingrediente.Tomato) this.numTomates++;
-                else this.numChamps++;
-
-            }
+        for (Celda cell : this.celdas) {
+            cell.setTrozo(this);
         }
     }
 
