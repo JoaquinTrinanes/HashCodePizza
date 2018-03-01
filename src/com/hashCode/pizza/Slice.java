@@ -95,20 +95,17 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
     }
 
     public boolean comprobar(Point p1, Point p2) {
-        Rectangle rect = new Rectangle(this.p1.x, this.p1.y, this.p2.y - this.p1.y+1, this.p2.x - this.p1.x+1);
         for (int r = p1.x; r <= p2.x; r++) {
             for (int c = p1.y; c <= p2.y; c++) {
                 /*
                 Comprobamos si la celda iterada es nueva en el slice
                  */
-                if (!rect.contains(new Point(r, c))) {
                     //zona nueva
                     Celda cell = Main.pizza.getCeldas()[r][c];
                     if (!(cell.getTrozo() == null || cell.getTrozo() == this)) {
                         //el trozo no es valido
                         return false;
                     }
-                }
             }
         }
         return true;
