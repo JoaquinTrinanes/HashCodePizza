@@ -12,7 +12,7 @@ public class Main {
 
     static {
         BufferedReader input = null;
-        Main.nombre = "medium";
+        Main.nombre = "big";
         Main.file = nombre + ".in";
         Main.out = nombre + ".out";
         try {
@@ -34,6 +34,7 @@ public class Main {
                     Slice s = new Slice(cell);
                     ArrayList<Slice> lista = new ArrayList<>();
                     Slice.formarTrozo(s, lista);
+                    Slice.seguir = true;
                     if(lista.size() > 0) {
                         Slice mejorSlice = Slice.obtenerMejorSlice(lista);
                         mejorSlice.anadirCeldasFinal();
