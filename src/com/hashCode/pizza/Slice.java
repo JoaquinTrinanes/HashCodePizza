@@ -51,7 +51,6 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
                 p1tmp = new Point(p1.x, p1.y -1);
                 if (p1tmp.y < 0) return null;
                 if (comprobar(p1tmp, p2)){
-                    //TODO())
                     trozo.setP1(p1tmp);
                     trozo.anadirCeldas(); //Para actualizar las celdas del Slice
                     return trozo;
@@ -61,7 +60,6 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
                 p1tmp = new Point(p1.x -1, p1.y);
                 if (p1tmp.x < 0) return null;
                 if (comprobar(p1tmp, p2)){
-                    //TODO())
                     trozo.setP1(p1tmp);
                     trozo.anadirCeldas(); //Para actualizar las celdas del Slice
                     return trozo;
@@ -72,7 +70,6 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
                 p2tmp = new Point(p2.x, p2.y +1);
                 if (p2tmp.y >= Main.pizza.C) return null;
                 if (comprobar(p1, p2tmp)){
-                    //TODO())
                     trozo.setP2(p2tmp);
                     trozo.anadirCeldas(); //Para actualizar las celdas del Slice
                     return trozo;
@@ -82,7 +79,6 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
                 p2tmp = new Point(p2.x +1, p2.y);
                 if (p2tmp.x >= Main.pizza.R) return null;
                 if (comprobar(p1, p2tmp)){
-                    //TODO())
                     trozo.setP2(p2tmp);
                     trozo.anadirCeldas(); //Para actualizar las celdas del Slice
                     return trozo;
@@ -137,17 +133,6 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
     }
 
 
-
-    //Se encarga de borrar el atributo slice de las celdas contenidas
-    public void borrarSlice(){
-
-        for (Celda cell : this.celdas) {
-            cell.setTrozo(null);
-        }
-        this.celdas.clear();
-
-    }
-
     @Override
     public String toString(){
         return p1.x+" "+p1.y+" "+p2.x+" "+p2.y;
@@ -201,17 +186,11 @@ Ademas de crecer comprobamos que el crecimiento sea "legal".
         return numTomates;
     }
 
-    public void setNumTomates(int numTomates) {
-        this.numTomates = numTomates;
-    }
 
     public int getNumChamps() {
         return numChamps;
     }
 
-    public void setNumChamps(int numChamps) {
-        this.numChamps = numChamps;
-    }
 
     public Point getP1() {
         return p1;
