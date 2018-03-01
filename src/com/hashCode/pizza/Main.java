@@ -38,10 +38,14 @@ public class Main {
                         Slice mejorSlice = Slice.obtenerMejorSlice(lista);
                         mejorSlice.anadirCeldasFinal();
                         Main.pizza.anadirTrozo(mejorSlice);
+                        if (Main.pizza.getTrozos().size() % 100 == 0) {
+                            System.out.println("Formados " + Main.pizza.getTrozos().size() + " trozos");
+                        }
                     }
                 }
             }
         }
+        System.out.println("Calculado. Escribiendo a archivo...");
         PrintWriter writer = new PrintWriter(Main.out, "ASCII");
         System.out.println(Main.pizza.getTrozos().size());
         writer.println(Main.pizza.getTrozos().size());
