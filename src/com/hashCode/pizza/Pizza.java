@@ -40,7 +40,7 @@ public class Pizza {
         if (this.numTomate < this.numChamp) this.MENOR_ING = Ingrediente.Tomato;
         else this.MENOR_ING = Ingrediente.Mushroom;
 
-        System.out.println("Pizza creada:");
+        /*System.out.println("Pizza creada:");
         for (Celda[] fila : celdas) {
             for (Celda cell : fila) {
                 System.out.print(cell.getIngrediente());
@@ -48,7 +48,7 @@ public class Pizza {
             System.out.println();
         }
         System.out.println("Champiñones: " + numChamp);
-        System.out.println("Tomates: " + numTomate);
+        System.out.println("Tomates: " + numTomate);*/
     }
 
     public List<Slice> cortar() {

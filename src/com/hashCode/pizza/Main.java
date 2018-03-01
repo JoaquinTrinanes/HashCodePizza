@@ -1,19 +1,20 @@
 package com.hashCode.pizza;
 
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Main {
 
     static Pizza pizza = null;
 
+    static String nombre, file, out;
+
     static {
         BufferedReader input = null;
-        String file = "small.in";
+        Main.nombre = "big";
+        Main.file = nombre + ".in";
+        Main.out = nombre + ".out";
         try {
             input = new BufferedReader(new FileReader(file));
             pizza = new Pizza(input);
@@ -24,7 +25,7 @@ public class Main {
 
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
 	//Itera por toda la pizza buscando una celda con el ingrediente de menor numero
         for(int r = 0;r < pizza.R;r++){
             for(int c = 0;c < pizza.C;c++){
@@ -43,8 +44,13 @@ public class Main {
                 }
             }
         }
+        PrintWriter writer = new PrintWriter(Main.out, "ASCII");
+        System.out.println(Main.pizza.getTrozos().size());
+        writer.println(Main.pizza.getTrozos().size());
         for(Slice s : Main.pizza.getTrozos()){
             System.out.println(s);
+            writer.println(s);
         }
+        writer.close();
     }
 }
